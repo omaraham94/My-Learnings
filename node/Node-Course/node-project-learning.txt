@@ -1,0 +1,177 @@
+node is a c++ program which has chrome v8 javascript engine.
+
+in node we dont have window or document object. (like they are there in browser).
+
+asynchronus means non-blocking synchronus means blocking
+
+1st ---> node Module System
+
+console.log -> here console is a global object
+Similarly we have :-
+setTimout, clearTimeout, setInterval, clearInterval. -- global objects
+
+In node we have global object rather than window object
+
+Like :- 
+global.setTimout or global.console
+
+But the variables or functions that are defined globally in node are not added to the global object which is not the case with window object
+
+All the global functions and global variables are only scoped to that file only where they are declared.
+
+Why node is modular rather than the browser: -
+Because of relaibality. If 2 functions are declared with the same name in the browser then 2nd function will override the 1st one and it will break. Hence node is made taken care of such things.
+
+Reason for functions and variables being scoped to that file only.
+
+
+Every file is considered as module.
+
+Every file in node has one main file or module from where the execution starts.
+
+Module is not a global object though it appears like a global object
+
+In the module there is a export object;
+
+Override the export object with the things u want to export;
+
+Then u can import it using the require object.
+
+Use const rather than variable as it is easy to debug
+
+Also tools like jshint can be used to identify what the error is.
+
+In a module u can export single function or object.
+
+
+=======
+
+The module wrapper function :-
+
+Node always wraps our code inside a function which has a definition like this :- 
+(function(exports, require, module, __filename, __dirname) {
+// your file code
+})
+
+Exports is a reference to the module.exports
+
+The above one is an immediately invoked function.
+
+Important modules :-
+File system,
+http,
+Os,
+Path,
+Process,
+Query strings,
+Stream,
+
+
+Path Module :-
+
+File System Module :-
+
+Event module
+
+Class in javascript should be uppercase
+
+http module :-
+
+======
+
+
+Node Package manager :-
+
+npm init to create package.json
+
+If ur using a lib of version 1 and some other lib requires its version 2, it will be stored in the node_modules folder of that lib
+
+In package.json :-
+The dependencies have versioning :- 4.14.3 which means : // Major.Minor.Patch
+^ => interested in minor and patch update but no change in major version
+~ => interested in patch but not in major and minor
+And if no ~ or ^ then interested in the exact version
+
+Npm list --depth=0
+
+Npm view <package_name> {optional dependencies or versions}
+
+ Npm outdated
+
+npm update // will not update to the major versions
+
+Npm un <package_name> removes a package
+
+Npm publish to publish to npm
+
+Npm version major/minor/patch to update the version of ur package and then npm publish
+
+Express is a package to easily build rest apis.
+
+Express : -
+
+app.get() is a middleware
+app.use() is a middleware
+
+Creating a custom middleware function.
+
+app.use(function(req, res, next) {
+	// next is a reference to the next middleware function in the pipeline
+	console.log('logging');
+	next(); // this is to pass control to the next middle ware function
+		// if this is not written, the control is not passed to the next middleware function.
+}
+
+
+Express.json() is a middleware function to convert the stringified json to object
+
+lly express.urlencoded({ extended: true }) is a middleware function which reads form-urlencoded data which is sent in the body.
+
+express.static('<folder_name>') from this folder all the static data is served.
+
+Ex :- localhost:3000/readme.txt will print the contents of readme.txt file if that file is in the folder and middleware express.static is used.
+
+Middleware of express for a list of middleware available.
+
+Helmet is a middle ware
+
+Morgan is a middle ware - used to log http request
+
+Npm I config for different configuration of dev, prod
+
+Npm I debug for debugging purposes so that u don't have to remove/add console statements.
+They can be controlled from env variables
+
+U can use templating engines to return html.
+e.g.: pug, ejs... and instead of res.send u write res.render('<filename>', <object for the parameters u want to pass>)
+
+Express.router is used to create a proper formatted application.
+Export the router and import in the app for proper structuring of the project.
+
+
+Asynchronous javascript :-
+
+See it in the js files
+
+Mongo db :-
+
+Mongoldb is a document database. Basically no sql database. Data is stored as Json. Similar to that of javascript objects
+
+Schema :- define the shape of document within a collection in mongodb.
+Schema is used to define the shape of documents in a mongodb collection
+
+Meaning :-
+Collection :- similar to a table in relational db. 
+
+Collection is a set of documents. 
+
+Document in mongodb is similar to a row in relational db
+
+Model :- model is like a class for an object. It takes 2 args 
+	1. Name of the collection,
+	2. Schema
+
+And then using that model class we can create and save objects to the schema.
+
+.save is used to to save the object to the db. This is a async operation. The result of this operation is a promise which when completed gives the data that is saved in the db.
+When save is performed, mongo assigns a unique id to this course object

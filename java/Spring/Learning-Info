@@ -1,0 +1,9 @@
+dependency injection :-
+delegation of creation of object to frame work rather than u manually creating it.
+
+@Service
+(creating singleton of the class)
+
+
+@Inject
+(to get the instance of the class)

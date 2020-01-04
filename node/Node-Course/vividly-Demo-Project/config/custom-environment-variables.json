@@ -1,0 +1,8 @@
+/* the file name is very important */
+{
+    "name": "My Express App",
+    "mail": {
+        "host": "dev-mail-server",
+        "password": "app_password"
+    }
+}
